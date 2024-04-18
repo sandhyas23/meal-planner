@@ -1,13 +1,30 @@
-import React from 'react'
+import React, { FormEvent, useState } from 'react'
 import Pantry from './Pantry';
 import { Bars3Icon, EllipsisVerticalIcon } from '@heroicons/react/16/solid';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 
+const [ingredient,setIngredient] = useState<string>("");
+const [pantryItems ,setPantryItems] = useState<string[]>([]);
+
+
 function SideBar() {
+
+
+  const handleSubmit =(e:FormEvent<HTMLButtonElement>) => {
+   if(pantryItems.includes(ingredient)){
+
+   }
+
+  }
+
   return (
     <div className='w-44 md:w-3/12 pb-10 md:pb-0 object-contain'>
-      <div className='flex-col bg-pink-500'>
+      <div className='flex-col'>
+      {/* gradient background */}
+      <div className='absolute top-0 left-0 w-3/12 h-52 
+                                 bg-gradient-to-br from-red-600  to-purple-600
+                                 filter blur-xl -z-50 opacity-100'/>
 
         <div className='flex items-center flex-1 w-full'>
 
@@ -28,15 +45,17 @@ function SideBar() {
 
         </div>
 
-        {/* Add search box */}
+        {/* Add ingredients */}
         <div className='flex items-center flex-1 justify-center w-full pb-4'>
           <form className='flex items-center space-x-5 bg-white rounded-md shadow-md flex-1 md:flex-initial
                         p-1'>
             <MagnifyingGlassIcon className='w-6 h-6 text-gray-400' />
             <input type='text'
-              placeholder="Search for ingredients"
+              value={ingredient}
+              onChange={(e) => setIngredient(e.target.value)}
+              placeholder="Add ingredients enter"
               className='flex-1 outline-none p-1' />
-            <button type='submit' hidden />
+            <button type='submit' hidden onSubmit={ handleSubmit} />
           </form>
         </div>
 
