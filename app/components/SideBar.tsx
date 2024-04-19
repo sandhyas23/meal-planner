@@ -1,21 +1,29 @@
+'use client'
 import React, { FormEvent, useState } from 'react'
 import Pantry from './Pantry';
 import { Bars3Icon, EllipsisVerticalIcon } from '@heroicons/react/16/solid';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 
 
-const [ingredient,setIngredient] = useState<string>("");
-const [pantryItems ,setPantryItems] = useState<string[]>([]);
+
 
 
 function SideBar() {
+  const [ingredient,setIngredient] = useState<string>("");
+  const [pantryItems ,setPantryItems] = useState<string[]>([]);
 
 
-  const handleSubmit =(e:FormEvent<HTMLButtonElement>) => {
-   if(pantryItems.includes(ingredient)){
-
+  const handleSubmit =(e:FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(ingredient);
+   if(!pantryItems.includes(ingredient)){
+      pantryItems.push(ingredient);
+      setPantryItems(pantryItems);
    }
-
+   else{
+    alert("item already present");
+   }
+   setIngredient("");
   }
 
   return (
@@ -47,7 +55,7 @@ function SideBar() {
 
         {/* Add ingredients */}
         <div className='flex items-center flex-1 justify-center w-full pb-4'>
-          <form className='flex items-center space-x-5 bg-white rounded-md shadow-md flex-1 md:flex-initial
+          <form onSubmit={handleSubmit} className='flex items-center space-x-5 bg-white rounded-md shadow-md flex-1 md:flex-initial
                         p-1'>
             <MagnifyingGlassIcon className='w-6 h-6 text-gray-400' />
             <input type='text'
@@ -55,7 +63,7 @@ function SideBar() {
               onChange={(e) => setIngredient(e.target.value)}
               placeholder="Add ingredients enter"
               className='flex-1 outline-none p-1' />
-            <button type='submit' hidden onSubmit={ handleSubmit} />
+            <button type='submit' hidden />
           </form>
         </div>
 
@@ -63,7 +71,7 @@ function SideBar() {
 
 
       {/* pantry ingredients */}
-      <Pantry />
+      <Pantry pantryItems={pantryItems} />
     </div>
   )
 }
