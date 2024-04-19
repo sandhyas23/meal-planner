@@ -1,29 +1,23 @@
 'use client'
-import React, { FormEvent, useState } from 'react'
+import React, { FormEvent, useCallback, useState } from 'react'
 import Pantry from './Pantry';
 import { Bars3Icon, EllipsisVerticalIcon } from '@heroicons/react/16/solid';
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
+import { usePantryStore } from '@/store/PantryStore';
 
 
 
 
 
 function SideBar() {
-  const [ingredient,setIngredient] = useState<string>("");
-  const [pantryItems ,setPantryItems] = useState<string[]>([]);
+  const [ingredient,setIngredient,pantryItems,addIngredient,deleteIngredient] = usePantryStore((state) =>
+                      [state.ingredient,state.setIngredient,state.pantryItems,state.addIngredient,state.deleteIngredient])
+  //const [pantryItems ,setPantryItems] = useState<string[]>([]);
 
 
   const handleSubmit =(e:FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(ingredient);
-   if(!pantryItems.includes(ingredient)){
-      pantryItems.push(ingredient);
-      setPantryItems(pantryItems);
-   }
-   else{
-    alert("item already present");
-   }
-   setIngredient("");
+     addIngredient(ingredient);
   }
 
   return (
@@ -71,7 +65,7 @@ function SideBar() {
 
 
       {/* pantry ingredients */}
-      <Pantry pantryItems={pantryItems} />
+      <Pantry pantryItems={pantryItems}/>
     </div>
   )
 }
