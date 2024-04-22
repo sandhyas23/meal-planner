@@ -11,20 +11,20 @@ type Props = {
 }
 
 function Pantry({pantryItems}:Props) {
-  const [deleteIngredient,mealPlanClicked,setMealPlanClicked,mealPlanner,setMealPlanner] = usePantryStore((state) => 
-                       [state.deleteIngredient,state.mealPlanClicked,state.setMealPlanClicked,state.mealPlanner,state.setMealPlanner]);
+  const [deleteIngredient,mealPlanClicked,setMealPlanClicked,setWeekPlan] = usePantryStore((state) => 
+                       [state.deleteIngredient,state.mealPlanClicked,state.setMealPlanClicked,state.setWeekPlan]);
 
   //const [mealPlanner,setMealPlanner] = useState<string>("");
 
 
 
   const generateMealPlan = () =>{
-     setMealPlanClicked();
+     setMealPlanClicked(true);
      const fetchMealPlanFunc = async() =>{
       const meal = await fetchMealPlan(pantryItems);
-      setMealPlanner(meal);
+      setWeekPlan(meal);
+      setMealPlanClicked(false);
   }
-
   fetchMealPlanFunc();
   }
 

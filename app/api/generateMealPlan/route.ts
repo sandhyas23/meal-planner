@@ -16,9 +16,12 @@ export async function POST(request:Request) {
         messages:[
             {
                 role:"user",
-                content:`Hi there, provide a meal plan with recipe names from MONDAY through SUNDAY that includes breakfast, lunch and dinner using the list of 
+                content:`Hi there, provide a meal plan with recipe names from monday through sunday that includes breakfast, lunch and dinner using the list of 
                 ingredients given below.
-                Here are the ingredients: ${JSON.stringify({ingredients})}`
+                Here are the ingredients: ${JSON.stringify({ingredients})}
+                Return the meal plan as array of objects like the following format
+                 ['{"day":"monday","breakfast":"","lunch":"","dinner":""}']`
+                
             }
         ]
     })

@@ -8,10 +8,11 @@ interface PantryState{
     deleteIngredient : (index:number) => void;
 
     mealPlanClicked:boolean;
-    setMealPlanClicked: () => void;
+    setMealPlanClicked: (mealPlanClicked:boolean) => void;
 
-    mealPlanner:string;
-    setMealPlanner: (mealPlanner:string) => void;
+
+    weekPlan : WeekPlan;
+    setWeekPlan: (meal:string) => void;
 
 }
 
@@ -47,16 +48,14 @@ export const usePantryStore = create<PantryState>()((set) => ({
     },
 
     mealPlanClicked:false,
-    setMealPlanClicked: async() =>{
-        set((state) => {
-            return {mealPlanClicked:true}
-        })
-        //set({mealPlanClicked:!mealPlanClicked})
+    setMealPlanClicked: async(value) =>{
+        set({mealPlanClicked:value})
     },
 
-    mealPlanner:"",
-    setMealPlanner: async(mealPlanner) =>{
-       set({mealPlanner: mealPlanner})
-    }
-    
+
+    weekPlan: {meal: []},
+
+    setWeekPlan: async(meal) =>{
+        set({weekPlan:{meal:JSON.parse(meal)}})
+    }   
 }))

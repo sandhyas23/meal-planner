@@ -38,7 +38,7 @@ function SideBar() {
             <p className='flex font-medium text-white  text-2xl'>
               Pantry
             </p>
-            <p className='flex font-extralight text-xs text-white'>you have 8 ingredients</p>
+            <p className='flex font-extralight text-xs text-white'>{`you have ${pantryItems.length} ingredients`}</p>
           </div>
 
           <button className='flex  justify-end m-2 p-2 '>
