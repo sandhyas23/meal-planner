@@ -14,6 +14,10 @@ function MealPlan() {
     return string.charAt(0).toUpperCase() + string.slice(1);
   }
 
+  const handlePrint =() => {
+    window.print()
+}
+
   
 
   return (
@@ -30,7 +34,7 @@ function MealPlan() {
             Add 5 or more Ingredients to the pantry
             </p>
         </div> :
-        <div className='flex '>
+        <div >
             <table className='mt-4 table-auto rounded-lg  border-separate  border border-slate-800 border-spacing-2'>
               <thead>
                 <tr className='p2'>
@@ -59,6 +63,14 @@ function MealPlan() {
                 })}
               </tbody>
             </table>
+           <div><button 
+              onClick={handlePrint}
+              className=' justify-center inline-flex rounded-md border mt-2 px-4 py-2
+                  text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none disabled:cursor-not-allowed
+                  disabled:text-gray-300 disabled:bg-gray-100 '>
+            Print 
+            </button></div>
+            
         </div>
         }
 

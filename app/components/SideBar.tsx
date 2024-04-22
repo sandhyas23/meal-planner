@@ -55,7 +55,7 @@ function SideBar() {
             <input type='text'
               value={ingredient}
               onChange={(e) => setIngredient(e.target.value)}
-              placeholder="Add ingredients enter"
+              placeholder="Add 5 ingredients"
               className='flex-1 outline-none p-1' />
             <button type='submit' hidden />
           </form>
